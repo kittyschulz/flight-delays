@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Interface</title>
+</head>
+<body>
+    <h1>Please Submit Flight Details</h1>
+    <form action="/submit" method="post">
+        <label for="flight_date">Flight Date:</label>
+        <input type="date" id="flight_date" name="flight_date"><br><br>
+
+        <label for="airport_origin">Airport Origin:</label>
+        <input type="text" id="airport_origin" name="airport_origin"><br><br>
+
+        <label for="airport_destination">Airport Destination:</label>
+        <input type="text" id="airport_destination" name="airport_destination"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
