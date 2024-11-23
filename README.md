@@ -2,6 +2,7 @@
 README.txt - a concise, short README.txt file, corresponding to the "user guide". This file should contain:
 ## Description
 DESCRIPTION - Describe the package in a few paragraphs
+The Flask folder contains the templates and code necessary for the website to run. 
 ## Installation
 INSTALLATION - How to install and setup your code
 ## Execution
