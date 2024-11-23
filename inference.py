@@ -28,6 +28,10 @@ def format(prediction):
     # format the output
     return prediction
 
+def recover_uid(df):
+    df['Flight_Number'] = df['Reporting_Airline'].astype(str) + ' ' + df['Flight_Number_Reporting_Airline'].astype(str)
+    return df
+
 def parse_data(df):
     df = df.rename(columns={
         'Departure Airport Code': 'Origin', 
