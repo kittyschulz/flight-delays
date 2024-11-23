@@ -28,12 +28,7 @@ def format(prediction):
     # format the output
     return prediction
 
-def parse_data(data):
-    if data.endswith(".csv"):
-        df = pd.read_csv(data)
-    else:
-        df = data
-
+def parse_data(df):
     df = df.rename(columns={
         'Departure Airport Code': 'Origin', 
         'Arrival Airport Code': 'Dest',
