@@ -1,7 +1,7 @@
 import torch
 import pandas as pd
 import pickle 
-import argparse
+import os
 import json
 
 from typing import Union
@@ -29,8 +29,10 @@ def format(prediction):
     return prediction
 
 def parse_data(data):
-    if isinstance(data, str):
+    if data.endswith(".csv"):
         df = pd.read_csv(data)
+    else:
+        df = data
 
     df = df.rename(columns={
         'Departure Airport Code': 'Origin', 
