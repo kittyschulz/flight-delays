@@ -3,21 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Interface</title>
+    <title>Flight Selection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJfM1kQK0K9h9fOxJ0HhtzNuH8x0fX8PqntN1DdTqLlT4hRZZfDl2h72o0A7" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;  
+            padding: 0;   
+            overflow: hidden; 
+        }
+
+        body {
+            background-color: #87CEEB;
+            background-image: url('https://images4.alphacoders.com/869/thumb-1920-869261.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center; 
+            padding-top: 50px;  
+            height: 100%; 
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        label {
+            color: white;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Please Submit Flight Details</h1>
-    <form action="/submit" method="post">
-        <label for="flight_date">Flight Date:</label>
-        <input type="date" id="flight_date" name="flight_date"><br><br>
 
-        <label for="airport_origin">Airport Origin:</label>
-        <input type="text" id="airport_origin" name="airport_origin"><br><br>
+    <div class="form-container">
+        <h1>Please Submit Flight Details</h1>
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="flight_date">Flight Date:</label>
+                <input type="date" id="flight_date" name="flight_date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="airport_origin">Airport Origin:</label>
+                <input type="text" id="airport_origin" name="airport_origin" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="airport_destination">Airport Destination:</label>
+                <input type="text" id="airport_destination" name="airport_destination" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
-        <label for="airport_destination">Airport Destination:</label>
-        <input type="text" id="airport_destination" name="airport_destination"><br><br>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybW5kOKfpQbRZC6LugzGNVp3t2pQQf7vDs0hV0j6pqeG88S8xk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0ak8z+6AKFf5dxr6wLOuCp6df0V3yG2zOebBxfPTp9nb6s3a" crossorigin="anonymous"></script>
 
-        <button type="submit">Submit</button>
-    </form>
 </body>
 </html>
