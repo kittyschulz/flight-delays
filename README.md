@@ -2,7 +2,7 @@
 README.txt - a concise, short README.txt file, corresponding to the "user guide". This file should contain:
 ## Description
 DESCRIPTION - Describe the package in a few paragraphs
-The Flask folder contains the templates and code necessary for the website to run. In the Flask folder we have the templates folder. The way Flask works you need to have this folder inside the folder you run the Flask python code in. In the templates we have a few htmls, but the only one we ended up using in the final projecct is the index.html.
+The Flask folder contains the templates and code necessary for the website to run. In the Flask folder we have the templates folder. The way Flask works you need to have this folder inside the folder you run the Flask python code in. In the templates we have a few htmls, but the only one we ended up using in the final projecct is the index.html. This is how our Flask website is displayed as an html website. Then we have the app.py which is how we run the Flask code. 
 ## Installation
 INSTALLATION - How to install and setup your code
 ## Execution
