@@ -50,11 +50,13 @@ def parse_data(data):
     df['Departure Time'] = pd.to_datetime(df['Departure Time'])
     df['DepTimeBlk'] = df['Departure Time'].dt.hour.apply(lambda h: f"{h:02d}:00-{h:02d}:59")
 
-    df['Arrival Time'] = pd.to_datetime(df['Arrival Time'])
-    df['ArrTime'] = df['Arrival Time'].dt.hour * 100 + df['Arrival Time'].dt.minute + 0.0
+    df['ArrTime'] = pd.to_datetime(df['ArrTime'])
+    df['ArrTime'] = df['ArrTime'].dt.hour * 100 + df['ArrTime'].dt.minute + 0.0
 
     df = df.drop(columns=[
+        "Flight_Info",
         "Departure Date",
+        "Departure Time",
         "Airplane",
         "Airline",
         "Departure Latitude",
