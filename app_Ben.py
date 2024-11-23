@@ -7,6 +7,7 @@ import os
 import json
 import torch
 from torch import nn
+from typing import Union
 
 app = Flask(__name__)
 
@@ -27,10 +28,23 @@ def load_model(model_path):
     if model_path.endswith(".pth"):
         model = torch.load(model_path)
     elif model_path.endswith(".pkl"):
-        model = pickle.load(model_path)
+        with open(model_path , 'rb') as f:
+            model = pickle.load(f)
     else:
         raise TypeError(f"File type {model_path.split('.')[-1]} cannot be loaded.")
     return model
+
+def inference(model, data):
+    if isinstance(model, torch.nn.Module):
+        logits = model(data)
+        _, pred = torch.max(logits, 1)
+        return pred
+    else:
+        return model.predict(data)
+    
+def format(prediction):
+    # format the output
+    return prediction
 
 def parse_data(data):
     if isinstance(data, str):
@@ -49,7 +63,7 @@ def parse_data(data):
         'Day_of_Week': 'DayOfWeek',
     })
 
-    df[['Reporting_Airline', 'Flight_Number_Reporting_Airline']] = df['Flight_Info'].str.split(' ', expand=True)
+    df[['Reporting_Airline', 'Flight_Number_Reporting_Airline']] = df['Flight Number'].str.split(' ', expand=True)
     df['Flight_Number_Reporting_Airline'] = df['Flight_Number_Reporting_Airline'].astype(float)
 
     df['Departure Date'] = pd.to_datetime(df['Departure Date'])
@@ -62,7 +76,7 @@ def parse_data(data):
     df['ArrTime'] = df['ArrTime'].dt.hour * 100 + df['ArrTime'].dt.minute + 0.0
 
     df = df.drop(columns=[
-        "Flight_Info",
+        "Flight Number",
         "Departure Date",
         "Departure Time",
         "Airplane",
@@ -73,8 +87,9 @@ def parse_data(data):
         "Arrival Longitude"
     ])
 
-    with open('all_mappings.json', 'r') as f:
-        mapping = json.load('mapping.json') # make sure this file exists somewhere accessible. May need to change path
+    with open('mapping.json', 'r') as f:
+        mapping = json.load(f) # make sure this file exists somewhere accessible. May need to change path
+
 
     df['Origin'] = df['Origin'].map(mapping['Origin']).fillna(-1).astype(int) 
     df['Dest'] = df['Dest'].map(mapping['Dest']).fillna(-1).astype(int) 
@@ -83,19 +98,23 @@ def parse_data(data):
     df['OriginStateName'] = df['OriginStateName'].map(mapping['OriginStateName']).fillna(-1).astype(int) 
     df['DestStateName'] = df['DestStateName'].map(mapping['DestStateName']).fillna(-1).astype(int) 
 
+    desired_order = [
+    'Origin', 'Dest', 'Month', 'AirTime', 'Reporting_Airline', 
+    'Flight_Number_Reporting_Airline', 'DepTimeBlk', 'ArrTime', 
+    'OriginStateName', 'DestStateName', 'DayofMonth', 'DayOfWeek'
+    ]
+    df = df[desired_order]
+
     return df
 
-def inference(model, data):
-    if isinstance(model, nn.Module):
-        logits = model(data)
-        _, pred = torch.max(logits, 1)
-        return pred
-    else:
-        return model.predict(data)
-    
-def format(prediction):
-    # format the output
-    return prediction
+def inference_combo(model_path: str, data: Union[str, pd.DataFrame]):
+    data = parse_data(data)
+    print('data ', data)
+    model = load_model(model_path)
+    print('model ', model)
+    output = inference(model, data)
+    print('output ', output)
+    return format(output)
 
 def google_api_search(dep_airport_code, arr_airport_code, dep_date, access_key='43fa493a7a0633b0f8a597de6064f18a9c59373ae5cf15d987f695c487a65c92'):
     params = {
@@ -175,15 +194,7 @@ def google_api_search(dep_airport_code, arr_airport_code, dep_date, access_key='
 
         # Now we call the parse_data function to transform the data
         ##old_df = merged_df
-        merged_df = parse_data(merged_df)
-        print('merged_df ', merged_df)
-        data = parse_data(merged_df)
-        print('data ', data)
-        model = load_model(MODEL_PATH)
-        print('model ', model)
-        output = inference(model, data)
-        print('output ', output)
-
+        output = inference_combo(MODEL_PATH, merged_df)
 
     except Exception as e:
         print("Error during API call or data processing:")
@@ -191,7 +202,7 @@ def google_api_search(dep_airport_code, arr_airport_code, dep_date, access_key='
         results = None
         merged_df = None
 
-    return results, merged_df
+    return results, output
 
 @app.route('/')
 def home():
