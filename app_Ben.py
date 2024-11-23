@@ -35,6 +35,8 @@ def load_model(model_path):
 def parse_data(data):
     if isinstance(data, str):
         df = pd.read_csv(data)
+    else:
+        df = data
 
     df = df.rename(columns={
         'Departure Airport Code': 'Origin', 
@@ -174,9 +176,13 @@ def google_api_search(dep_airport_code, arr_airport_code, dep_date, access_key='
         # Now we call the parse_data function to transform the data
         ##old_df = merged_df
         merged_df = parse_data(merged_df)
+        print('merged_df ', merged_df)
         data = parse_data(merged_df)
+        print('data ', data)
         model = load_model(MODEL_PATH)
+        print('model ', model)
         output = inference(model, data)
+        print('output ', output)
 
 
     except Exception as e:
@@ -185,7 +191,7 @@ def google_api_search(dep_airport_code, arr_airport_code, dep_date, access_key='
         results = None
         merged_df = None
 
-    return results, format(output)
+    return results, merged_df
 
 @app.route('/')
 def home():
