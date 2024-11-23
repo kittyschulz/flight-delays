@@ -1,0 +1,7 @@
+flask_sqlalchemy==3.1.1
+gdown==5.2.0
+pandas==2.2.3
+Requests==2.32.3
+scikit_learn==1.4.2
+serpapi==0.1.5
+torch==2.5.1
