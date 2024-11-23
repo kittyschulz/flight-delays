@@ -4,6 +4,8 @@ import pickle
 import argparse
 import json
 
+from typing import Union
+
 def load_model(model_path):
     if model_path.endswith(".pth"):
         model = torch.load(model_path)
@@ -85,16 +87,8 @@ def parse_data(data):
 
     return df
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model_path", type=str, required=True,)
-    parser.add_argument("-d", "--data", type=str, required=True,)
-    args = parser.parse_args()
-
-    data = parse_data(args.data)
-    model = load_model(args.model_path)
+def main(model_path: str, data: Union[str, pd.DataFrame]):
+    data = parse_data(data)
+    model = load_model(model_path)
     output = inference(model, data)
     return format(output)
-
-if __name__ == "__main__":
-    main()
