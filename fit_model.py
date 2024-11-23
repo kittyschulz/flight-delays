@@ -3,12 +3,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 import gdown
+import os
+import argparse
 
-def main():
-    print("Downloading sample of dataset to fit model...")
-    file_id = '1cYuPB-OmSo9k1Hiy0XM6RgSQHxaWJ_GP'
-    url = f'https://drive.google.com/uc?id={file_id}'
-    pkl_data = gdown.download(url, None, quiet=True)
+import warnings
+warnings.filterwarnings("ignore")
+
+def main(eval=True):
+    if not os.path.exists("./raw_data_v2.pkl"):
+        print("Downloading sample of dataset to fit model...")
+        file_id = '1cYuPB-OmSo9k1Hiy0XM6RgSQHxaWJ_GP'
+        url = f'https://drive.google.com/uc?id={file_id}'
+        pkl_data = gdown.download(url, None, quiet=True)
+    else:
+        pkl_data = "./raw_data_v2.pkl"
 
     try: 
         with open(pkl_data, 'rb') as f:
@@ -58,4 +66,8 @@ def main():
     return dt_clf
 
 if __name__=="__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("eval")
+    args = parser.parse_args()
+    
+    main(args)
