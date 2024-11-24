@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import gdown
 import os
 import argparse
@@ -9,7 +9,7 @@ import argparse
 import warnings
 warnings.filterwarnings("ignore")
 
-def main(eval=True):
+def main():
     if not os.path.exists("./raw_data_v2.pkl"):
         print("Downloading sample of dataset to fit model...")
         file_id = '1cYuPB-OmSo9k1Hiy0XM6RgSQHxaWJ_GP'
@@ -58,16 +58,14 @@ def main(eval=True):
     dt_clf = DecisionTreeClassifier()
     dt_clf.fit(X_train, y_train)
 
-    if eval: 
-        print("Evaluating Decision Tree model...")
-        preds = dt_clf.predict(X_test)
-        print(classification_report(y_test, preds))
+    print("Evaluating Decision Tree model...")
+    preds = dt_clf.predict(X_test)
+    print(classification_report(y_test, preds))
+    cm = confusion_matrix(y_test, preds)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp.plot().figure_.savefig('confusion_matrix.png')
 
     return dt_clf
 
 if __name__=="__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("eval")
-    args = parser.parse_args()
-    
-    main(args)
+    main()
