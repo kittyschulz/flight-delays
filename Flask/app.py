@@ -14,7 +14,7 @@ import gdown
 import json
 from typing import Union
 import random
-
+gdown.download('https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', 'updated_model.pkl', quiet=False)
 app = Flask(__name__)
 
 OUTPUT_FOLDER = "Flight Results"
@@ -218,8 +218,9 @@ def submit():
         # Call the Google API with the form inputs
         results, merged_df = google_api_search(airport_origin, airport_destination, flight_date)
         
+        #os.system("!gdown '1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD' ")
         # Download model
-        gdown.download('1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', 'updated_model.pkl', quiet=False)
+        #gdown.download('https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', 'updated_model.pkl', quiet=False)
         model_path = os.path.join('updated_model.pkl')
         
         data = parse_data(merged_df)
