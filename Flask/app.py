@@ -14,7 +14,7 @@ import gdown
 import json
 from typing import Union
 import random
-gdown.download('https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', 'updated_model.pkl', quiet=False)
+
 app = Flask(__name__)
 
 OUTPUT_FOLDER = "Flight Results"
