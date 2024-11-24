@@ -4,13 +4,13 @@
 
 The Flask folder contains the templates and code necessary for the website to run. This is how our Flask website is displayed as an html website. Then we have the `app.py` which is how we run the Flask code. The code `app.py` uses `index.html` and `mapping.json`. In the Flask folder we have the templates folder. The way Flask works you need to have this folder inside the folder you run the Flask python code in. In the templates we have a few htmls, but the only one we ended up using in the final project is the index.html. The code `inference.py` is also in the Flask folder since it is where we took some our code and put it into the `app.py`. Additionally, we have `iata-icao.csv` in this folder. This is the data that was used for mapping the airports latitudes, longitudes, names, codes, etc.
 
-Additionally, in the main tree we have a `fit_model.py` file that will help you recreate our model. We also have the 'Flights Test' tableau dashboard so that you can download that and once running the Flask website code, you can input your data to see what the end user would see if we made this functional and on market. We also have the files for README, license, and requirements.
+Additionally, in the main tree we have a `fit_model.py` file that will help you recreate our model. We also have the `Flights_Test.twbx` tableau dashboard so that you can download that and once running the Flask website code, you can input your data to see what the end user would see if we made this functional and on market. We also have the files for README, license, and requirements.
 
 Other Folders we have are Middle-steps and `static/css`. The Middle-steps folder contains a lot of the code that we published to each other to make sure we were on the same page and making progress together. The `static/css` folder was also a Middle-step of when we were thinking of needing this for the formating of the Flask website. 
 
 ## Installation
 
-To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the 'Flights_Test' file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
+To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
 
 ## Execution
 
