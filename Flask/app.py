@@ -223,6 +223,8 @@ def submit():
     output = inference(model, data)
     
     data['Predictions'] = output
+    mapping = {True: 'Delayed', False: 'Not delayed'}
+    data['Predictions'] = data['Predictions'].map(mapping)
     data = recover_uid(data)
     
     merged_df['Predictions'] = merged_df['Flight Number'].map(data.set_index('Flight_Number')['Predictions'])
