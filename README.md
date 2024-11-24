@@ -8,15 +8,20 @@ Additionally, in the main tree we have a `fit_model.py` file that will help you 
 
 ## Installation
 
-Data is automatically downloaded using the python gdown libray from a public location when running our app.To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder. Finally, you will need to download the Decision Tree model from [this link](https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD/view?usp=sharing).
+Data is automatically downloaded using the python `gdown` libray from a public location when running our app.
+
+To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Make sure you have all the libraries that the code uses. These are found in `requirements.txt`. 
+
+Make sure that on your computer you have a "Flask" folder. Finally, you will need to download the Decision Tree model from [this link](https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD/view?usp=sharing). 
 
 ## Execution
 
-Navigate to that folder and run the `app.py` code. This should give you an URL to go to use the website. After running this URL make sure you input ALL THREE inputs of date, departure airport, and arrival airport. This will then give you a `*.csv` in a folder inside of your Flask folder. Next open up the Tableau dashboard and update the data that the dashboard is using and you should get a map with flights from your data as well as the pricing, delayed prediction, and general information on what causes flight delays.
+Navigate to that folder and run the `app.py` code. This should give you a URL to go to use the website. 
 
-To re-create the Decision Tree model, run `fit_model.py`. A classification report for the performance of the model on the test set will be printed to the console. 
+To make your first query, make sure you input ALL THREE inputs of date, departure airport, and arrival airport. This will then give you a `*.csv` file in a folder inside of your Flask folder. Open up the Tableau dashboard and update the data that the dashboard is using and you will get a map with flights from your data as well as the pricing, delayed prediction, and general information on what causes flight delays.
+
+Additionally, the results of the Decision Tree model which are used to make predictions can be reproduced by running `fit_model.py`. A classification report for the performance of the model on the test set will be printed to the console. 
 
 ## Demo
-[Optional, but recommended] DEMO VIDEO - Include the URL of a 1-minute *unlisted* YouTube video in this txt file. The video would show how to install and execute your system/tool/approach (e.g, from typing the first command to compile, to system launching, and running some examples). Feel free to speed up the video if needed (e.g., remove less relevant video segments). This video is optional (i.e., submitting a video does not increase scores; not submitting one does not decrease scores). However, we recommend teams to try and create such a video, because making the video helps teams better think through what they may want to write in the README.txt, and generally how they want to "sell" their work.
-[ Demo video ](https://www.youtube.com/watch?v=wjou98-qkBI)
+Please find the demo video at: [ Demo video ](https://www.youtube.com/watch?v=wjou98-qkBI)
 
