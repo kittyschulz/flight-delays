@@ -8,7 +8,7 @@ Additionally, in the main tree we have a `fit_model.py` file that will help you 
 
 ## Installation
 
-Data is automatically downloaded using the python gdown libray from a public location when running our app.To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
+Data is automatically downloaded using the python gdown libray from a public location when running our app.To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder. Finally, you will need to download the Decision Tree model from [this link](https://drive.google.com/file/d/1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD/view?usp=sharing).
 
 ## Execution
 
