@@ -16,7 +16,14 @@ Make sure that on your computer you have a "Flask" folder. Finally, you will nee
 
 ## Execution
 
-Navigate to that folder and run the `app.py` code. This should give you a URL to go to use the website. 
+After cloning this repository, and inside of `flight-delays` directory, run the following:
+
+ ```
+ $ cd Flask
+ $ python app.py
+```
+
+You will see a URL appear in the command line which you should follow to use the website. 
 
 To make your first query, make sure you input ALL THREE inputs of date, departure airport, and arrival airport. This will then give you a `*.csv` file in a folder inside of your Flask folder. Open up the Tableau dashboard and update the data that the dashboard is using and you will get a map with flights from your data as well as the pricing, delayed prediction, and general information on what causes flight delays.
 
