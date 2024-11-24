@@ -219,7 +219,7 @@ def submit():
         results, merged_df = google_api_search(airport_origin, airport_destination, flight_date)
         
         # Download model
-        gdown.download('1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', output, quiet=False)
+        gdown.download('1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', 'updated_model.pkl', quiet=False)
         model_path = os.path.join('updated_model.pkl')
         
         data = parse_data(merged_df)
