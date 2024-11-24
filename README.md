@@ -10,7 +10,7 @@ Other Folders we have are Middle-steps and `static/css`. The Middle-steps folder
 
 ## Installation
 
-To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the 'Flights Test' file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
+To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the 'Flights_Test' file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
 
 ## Execution
 
