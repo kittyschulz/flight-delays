@@ -10,6 +10,7 @@ import csv
 import torch
 from torch import nn
 import argparse
+import gdown
 import json
 from typing import Union
 import random
@@ -217,6 +218,8 @@ def submit():
         # Call the Google API with the form inputs
         results, merged_df = google_api_search(airport_origin, airport_destination, flight_date)
         
+        # Download model
+        gdown.download('1MS93c4DfEhPU4_QS7H-FcfV8-Z7F7sgD', output, quiet=False)
         model_path = os.path.join('updated_model.pkl')
         
         data = parse_data(merged_df)
