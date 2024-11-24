@@ -223,7 +223,7 @@ def submit():
     output = inference(model, data)
     
     data['Predictions'] = output
-    mapping = {True: 'Delayed', False: 'Not delayed'}
+    mapping = {True: 'Delayed', False: 'On Time'}
     data['Predictions'] = data['Predictions'].map(mapping)
     data = recover_uid(data)
     
