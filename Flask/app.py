@@ -207,42 +207,42 @@ def home():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    print("Submit route hit")
-    # Collect data from the form
-    flight_date = request.form['flight_date']
-    airport_origin = request.form['airport_origin']
-    airport_destination = request.form['airport_destination']
+    try:
+        print("Submit route hit")
+        # Collect data from the form
+        flight_date = request.form['flight_date']
+        airport_origin = request.form['airport_origin']
+        airport_destination = request.form['airport_destination']
 
-    # Call the Google API with the form inputs
-    results, merged_df = google_api_search(airport_origin, airport_destination, flight_date)
-    
-    model_path = os.path.join('updated_model.pkl')
-    
-    data = parse_data(merged_df)
-    model = load_model(model_path)
-    output = inference(model, data)
-    
-    data['Predictions'] = output
-    mapping = {True: 'Delayed', False: 'On Time'}
-    data['Predictions'] = data['Predictions'].map(mapping)
-    data = recover_uid(data)
-    
-    merged_df['Predictions'] = merged_df['Flight Number'].map(data.set_index('Flight_Number')['Predictions'])
-    
-    #merged_df = data
-
-    if merged_df is not None:
-        print("Results found, writing to CSV")
-        csv_file_path = os.path.join(OUTPUT_FOLDER, 'flights_data.csv')
-        merged_df.to_csv(csv_file_path, mode='w', index=False, header=True)
+        # Call the Google API with the form inputs
+        results, merged_df = google_api_search(airport_origin, airport_destination, flight_date)
         
-        print("DataFrame column types:\n", merged_df.dtypes)
+        model_path = os.path.join('updated_model.pkl')
+        
+        data = parse_data(merged_df)
+        model = load_model(model_path)
+        output = inference(model, data)
+        
+        data['Predictions'] = output
+        data = recover_uid(data)
+        
+        merged_df['Predictions'] = merged_df['Flight Number'].map(data.set_index('Flight_Number')['Predictions'])
+        
+        if merged_df is not None:
+            print("Results found, writing to CSV")
+            csv_file_path = os.path.join(OUTPUT_FOLDER, 'flights_data.csv')
+            merged_df.to_csv(csv_file_path, mode='w', index=False, header=True)
+            
+            print("DataFrame column types:\n", merged_df.dtypes)
 
-        return f"Flight information successfully saved to {csv_file_path}"
+            return f"Flight information successfully saved to {csv_file_path}"
 
-    else:
-        print("No results found")
-        return "No flight information found."
+        else:
+            print("No results found")
+            return render_template('error.html', error_message="No flight information found.")
+    except Exception as e:
+        print("Error occurred:", e)
+        return render_template('error.html', error_message=str(e))
 
 
 
