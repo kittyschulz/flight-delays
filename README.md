@@ -20,4 +20,5 @@ To re-create the Decision Tree model, run `fit_model.py`. A classification repor
 
 ## Demo
 [Optional, but recommended] DEMO VIDEO - Include the URL of a 1-minute *unlisted* YouTube video in this txt file. The video would show how to install and execute your system/tool/approach (e.g, from typing the first command to compile, to system launching, and running some examples). Feel free to speed up the video if needed (e.g., remove less relevant video segments). This video is optional (i.e., submitting a video does not increase scores; not submitting one does not decrease scores). However, we recommend teams to try and create such a video, because making the video helps teams better think through what they may want to write in the README.txt, and generally how they want to "sell" their work.
-[ Embed video here ](link)
+[ Demo video ](https://www.youtube.com/watch?v=wjou98-qkBI)
+
