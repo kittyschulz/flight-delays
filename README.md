@@ -8,7 +8,7 @@ Additionally, in the main tree we have a `fit_model.py` file that will help you 
 
 ## Installation
 
-To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
+Data is automatically downloaded using the python gdown libray from a public location when running our app.To install the Flask website and use the Tableau dashboard, first download the full Flask folder and the `Flights_Test.twbx` file. Next, make sure you have all the libraries that the code uses. After, make sure that on your computer you have a "Flask" folder.
 
 ## Execution
 
